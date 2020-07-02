@@ -502,7 +502,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hightLightMaterial: {fileID: 2100000, guid: 95f74b12dd0c37b4db0ece185a36dfa6, type: 2}
   defaultMaterial: {fileID: 2100000, guid: 3de0eaca2f7d5cf4ea941b080d5a7c46, type: 2}
-  panel: {fileID: 0}
+  selectObjectNameText: {fileID: 75373548}
   selectableTag: Selectable
 --- !u!4 &619942268
 Transform:
@@ -1061,7 +1061,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1404209511
 RectTransform:
   m_ObjectHideFlags: 0
