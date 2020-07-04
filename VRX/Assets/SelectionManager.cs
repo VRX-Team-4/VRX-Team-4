@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class SelectionManager : MonoBehaviour
 {
+    [SerializeField] public GameObject InteractMenu;
     [SerializeField] private Material hightLightMaterial;
     [SerializeField] private Material defaultMaterial;
     [SerializeField] private GameObject selectObjectNameText; 
@@ -19,30 +20,36 @@ public class SelectionManager : MonoBehaviour
         {
             var selectionRenderer = _selection.GetComponent<Renderer>();
             selectionRenderer.material = defaultMaterial;
-            
+            selectObjectNameText.GetComponent<Text>().text = null;
+
             _selection = null;
         }
-        
+
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit)) 
+
+        if (Physics.Raycast(ray, out RaycastHit hit))
         {
             var selection = hit.transform;
-            if (selection.CompareTag(selectableTag)) 
+            if (selection.CompareTag(selectableTag))
             {
                 var selectionRenderer = selection.GetComponent<Renderer>();
 
                 if (selectionRenderer != null)
                 {
+                    var selectedObject = selection.GetComponent<IInteractable>().Interact();
+
                     selectionRenderer.material = hightLightMaterial;
+                    selectObjectNameText.GetComponent<Text>().text = selectedObject.ObjectName;
 
                     // If Left Mouse Button clicked.
                     if (Input.GetMouseButtonDown(0))
                     {
-                        var selectedObject = selection.GetComponent<IInteractable>();
-                        
-                        selectObjectNameText.GetComponent<Text>().text = selectedObject.Interact();
+                        Cursor.lockState = CursorLockMode.None;
+
+                        foreach (var menuOption in selectedObject.InteractMenuOptionButtons)
+                        {
+                            menuOption.transform.SetParent(InteractMenu.transform);
+                        }
                     }
                 }
 
