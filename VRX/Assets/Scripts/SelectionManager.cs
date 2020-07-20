@@ -36,20 +36,28 @@ public class SelectionManager : MonoBehaviour
 
                 if (selectionRenderer != null)
                 {
-                    var selectedObject = selection.GetComponent<IInteractable>().Interact();
+                    //var selectedObject = selection.GetComponent<IInteractable>().Interact();
 
                     selectionRenderer.material = hightLightMaterial;
-                    selectObjectNameText.GetComponent<Text>().text = selectedObject.ObjectName;
+                    //selectObjectNameText.GetComponent<Text>().text = selectedObject.ObjectName;
 
                     // If Left Mouse Button clicked.
                     if (Input.GetMouseButtonDown(0))
                     {
-                        Cursor.lockState = CursorLockMode.None;
+                        //InteractMenu.SetActive(true);
 
-                        foreach (var menuOption in selectedObject.InteractMenuOptionButtons)
-                        {
-                            menuOption.transform.SetParent(InteractMenu.transform);
-                        }
+                        var selectedObject = selection.GetComponent<IInteractable>().Interact();
+
+                        //selectedObject.InteractionManuPanel.SetActive(true);
+                        //Debug.Log(selectedObject.InteractMenuOptionButtons.Count);
+                        //foreach (var menuOption in selectedObject.InteractMenuOptionButtons)
+                        //{
+                        //    menuOption.transform.SetParent(InteractMenu.transform);
+                        //}
+
+                        ////InteractMenu.transform.GetChild(0).GetComponent<Button>().Select();
+
+                        //selectedObject.InteractMenuOptionButtons[0].GetComponent<Button>().Select();
                     }
                 }
 

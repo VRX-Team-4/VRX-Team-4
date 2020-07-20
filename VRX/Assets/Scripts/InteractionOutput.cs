@@ -6,5 +6,6 @@ public class InteractionOutput
 {
     public string ObjectName;
     public List<GameObject> InteractMenuOptionButtons;
+    public GameObject InteractionManuPanel;
     public GameObject ButtonPreFab;
 }
