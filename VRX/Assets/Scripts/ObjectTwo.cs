@@ -25,40 +25,31 @@ public class ObjectTwo : MonoBehaviour, IInteractable
         exitButton.GetComponent<Button>().onClick.AddListener(OnExitButtonClick);
         InteractMenuOptionButtons.Add(exitButton);
 
-        //GameObject interactMenu = Instantiate(InteractMenu);
-
-        foreach (var button in InteractMenuOptionButtons)
+        foreach (GameObject button in InteractMenuOptionButtons)
         {
             button.transform.SetParent(InteractMenu.transform);
         }
     }
 
+    public HoverOutput Hover()
+    {
+        return new HoverOutput
+        {
+            ObjectName = ObjectName
+        };
+    }
+
     public InteractionOutput Interact()
     {
-        //GameObject objectOneButton = Instantiate(ButtonPreFab);
-        //objectOneButton.transform.GetChild(0).GetComponent<Text>().text = "Click Object Two";
-        //InteractMenuOptionButtons.Add(objectOneButton);
-
-        //GameObject exitButton = Instantiate(ButtonPreFab);
-        //exitButton.transform.GetChild(0).GetComponent<Text>().text = "Exit";
-        //exitButton.GetComponent<Button>().onClick.AddListener(OnExitButtonClick);
-        //InteractMenuOptionButtons.Add(exitButton);
-
-        //return new InteractionOutput
-        //{
-        //    ObjectName = ObjectName,
-        //    InteractMenuOptionButtons = InteractMenuOptionButtons,
-        //};
         InteractMenu.SetActive(true);
 
-        foreach (var button in InteractMenuOptionButtons)
+        foreach (GameObject button in InteractMenuOptionButtons)
         {
             button.SetActive(true);
         }
 
         InteractMenuOptionButtons[0].GetComponent<Button>().Select();
 
-        Debug.Log("i test");
         return new InteractionOutput
         {
             ObjectName = ObjectName,
@@ -69,21 +60,11 @@ public class ObjectTwo : MonoBehaviour, IInteractable
 
     void OnExitButtonClick()
     {
-        foreach (var button in InteractMenuOptionButtons)
+        foreach (GameObject button in InteractMenuOptionButtons)
         {
             button.SetActive(false);
-            InteractMenu.SetActive(false);
         }
-        //Debug.Log("test two");
-        ////foreach (Transform child in InteractMenu.transform)
-        ////{
-        ////    Destroy(child.gameObject);
-        ////}
-        //InteractMenu.transform.DetachChildren();
-        ////foreach (GameObject option in InteractMenuOptionButtons)
-        ////{
-        ////    option.transform.parent = null;
-        ////}
-        //InteractMenu.SetActive(false);
+
+        InteractMenu.SetActive(false);
     }
 }

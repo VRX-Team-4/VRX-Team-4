@@ -7,5 +7,6 @@ public interface IInteractable
     // Properties
 
     // Methods
+    HoverOutput Hover();
     InteractionOutput Interact();
 }

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class SelectionManager : MonoBehaviour
@@ -8,19 +6,22 @@ public class SelectionManager : MonoBehaviour
     [SerializeField] public GameObject InteractMenu;
     [SerializeField] private Material hightLightMaterial;
     [SerializeField] private Material defaultMaterial;
+    [SerializeField] private GameObject selectedObjectNamePanel;
     [SerializeField] private GameObject selectObjectNameText; 
     [SerializeField] private string selectableTag = "Selectable";
 
     private Transform _selection; 
 
-    // Update is called once per frame
     private void Update()
     {
         if (_selection != null)
         {
             var selectionRenderer = _selection.GetComponent<Renderer>();
             selectionRenderer.material = defaultMaterial;
+
+            // Remove selected object's name. 
             selectObjectNameText.GetComponent<Text>().text = null;
+            selectedObjectNamePanel.SetActive(false);
 
             _selection = null;
         }
@@ -34,30 +35,20 @@ public class SelectionManager : MonoBehaviour
             {
                 var selectionRenderer = selection.GetComponent<Renderer>();
 
+                // Display selected object name. 
+                var hoverOutput = selection.GetComponent<IInteractable>().Hover();
+
+                selectedObjectNamePanel.SetActive(true);
+                selectObjectNameText.GetComponent<Text>().text = hoverOutput.ObjectName;
+
                 if (selectionRenderer != null)
                 {
-                    //var selectedObject = selection.GetComponent<IInteractable>().Interact();
-
                     selectionRenderer.material = hightLightMaterial;
-                    //selectObjectNameText.GetComponent<Text>().text = selectedObject.ObjectName;
 
                     // If Left Mouse Button clicked.
                     if (Input.GetMouseButtonDown(0))
                     {
-                        //InteractMenu.SetActive(true);
-
                         var selectedObject = selection.GetComponent<IInteractable>().Interact();
-
-                        //selectedObject.InteractionManuPanel.SetActive(true);
-                        //Debug.Log(selectedObject.InteractMenuOptionButtons.Count);
-                        //foreach (var menuOption in selectedObject.InteractMenuOptionButtons)
-                        //{
-                        //    menuOption.transform.SetParent(InteractMenu.transform);
-                        //}
-
-                        ////InteractMenu.transform.GetChild(0).GetComponent<Button>().Select();
-
-                        //selectedObject.InteractMenuOptionButtons[0].GetComponent<Button>().Select();
                     }
                 }
 
