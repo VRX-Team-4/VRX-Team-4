@@ -4,17 +4,24 @@ using UnityEngine.UI;
 
 public class ObjectOne : MonoBehaviour, IInteractable
 {
+    #region Properties
+
     [SerializeField] public string ObjectName;
     [SerializeField] public GameObject InteractMenu;
 
     public List<GameObject> InteractMenuOptionButtons;
     public GameObject ButtonPreFab;
 
+    #endregion
+
+    #region Start
+
     void Start()
     {
         // Instantiate first button for Object One. 
         GameObject objectOneButton = Instantiate(ButtonPreFab);
-        objectOneButton.transform.GetChild(0).GetComponent<Text>().text = "Click Object One";
+        objectOneButton.transform.GetChild(0).GetComponent<Text>().text = "Rotate me!!!";
+        objectOneButton.GetComponent<Button>().onClick.AddListener(RotateObjectOne);
         InteractMenuOptionButtons.Add(objectOneButton);
 
         // Instantiate Exit button for Object One. 
@@ -30,14 +37,22 @@ public class ObjectOne : MonoBehaviour, IInteractable
         }
     }
 
+    #endregion
+
+    #region On Hover
+
     public HoverOutput Hover()
     {
         return new HoverOutput 
         { 
             ObjectName = ObjectName
         };
-    }    
-    
+    }
+
+    #endregion
+
+    #region On Interact
+
     public InteractionOutput Interact() 
     {
         // Show SelectedObjectInteractMenu on Interact. 
@@ -55,9 +70,16 @@ public class ObjectOne : MonoBehaviour, IInteractable
         return new InteractionOutput
         {
             ObjectName = ObjectName,
-            //InteractionManuPanel = interactMenu
-            //InteractMenuOptionButtons = InteractMenuOptionButtons,
         };
+    }
+
+    #endregion
+
+    #region On Button Click
+
+    void RotateObjectOne()
+    {
+        transform.Rotate(0f, 45f, 0f);
     }
 
     void OnExitButtonClick()
@@ -69,4 +91,6 @@ public class ObjectOne : MonoBehaviour, IInteractable
 
         InteractMenu.SetActive(false);
     }
+
+    #endregion
 }

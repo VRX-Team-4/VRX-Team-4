@@ -4,11 +4,17 @@ using UnityEngine.UI;
 
 public class ObjectTwo : MonoBehaviour, IInteractable
 {
+    #region Properties
+
     [SerializeField] public string ObjectName;
     [SerializeField] public GameObject InteractMenu;
 
     public List<GameObject> InteractMenuOptionButtons;
     public GameObject ButtonPreFab;
+
+    #endregion
+
+    #region Start
 
     void Start()
     {
@@ -31,6 +37,10 @@ public class ObjectTwo : MonoBehaviour, IInteractable
         }
     }
 
+    #endregion
+
+    #region On Hover
+
     public HoverOutput Hover()
     {
         return new HoverOutput
@@ -38,6 +48,10 @@ public class ObjectTwo : MonoBehaviour, IInteractable
             ObjectName = ObjectName
         };
     }
+
+    #endregion
+
+    #region On Interact
 
     public InteractionOutput Interact()
     {
@@ -53,10 +67,12 @@ public class ObjectTwo : MonoBehaviour, IInteractable
         return new InteractionOutput
         {
             ObjectName = ObjectName,
-            //InteractionManuPanel = interactMenu
-            //InteractMenuOptionButtons = InteractMenuOptionButtons,
         };
     }
+
+    #endregion
+
+    #region On Button Click
 
     void OnExitButtonClick()
     {
@@ -67,4 +83,6 @@ public class ObjectTwo : MonoBehaviour, IInteractable
 
         InteractMenu.SetActive(false);
     }
+
+    #endregion
 }
