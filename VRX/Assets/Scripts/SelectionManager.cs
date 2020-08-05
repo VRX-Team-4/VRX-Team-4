@@ -3,8 +3,8 @@ using UnityEngine.UI;
 
 public class SelectionManager : MonoBehaviour
 {
-    [SerializeField] private Material hightLightMaterial;
-    [SerializeField] private Material defaultMaterial;
+    //[SerializeField] private Material hightLightMaterial;
+    //[SerializeField] private Material defaultMaterial;
     [SerializeField] private GameObject selectedObjectNamePanel;
     [SerializeField] private GameObject selectObjectNameText; 
     [SerializeField] private string selectableTag = "Selectable";
@@ -17,7 +17,7 @@ public class SelectionManager : MonoBehaviour
         if (selectedObject != null && selectedObject.CompareTag(selectableTag))
         {
             var selectionRenderer = selectedObject.GetComponent<Renderer>();
-            selectionRenderer.material = defaultMaterial;
+            //selectionRenderer.material = defaultMaterial;
 
             // Remove selected object's name. 
             selectObjectNameText.GetComponent<Text>().text = null;
@@ -44,7 +44,7 @@ public class SelectionManager : MonoBehaviour
 
                 if (selectionRenderer != null)
                 {
-                    selectionRenderer.material = hightLightMaterial;
+                    //selectionRenderer.material = hightLightMaterial;
 
                     // If Left Mouse Button clicked.
                     if (Input.GetMouseButtonDown(0))
