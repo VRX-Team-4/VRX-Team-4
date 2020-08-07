@@ -4,7 +4,6 @@ using UnityEngine.UI;
 
 public class SmartPhone : MonoBehaviour
 {
-    [SerializeField] public KeyCode SmartPhoneKey;
     [SerializeField] public GameObject ButtonPreFab;
     [SerializeField] public GameObject SmartPhonePanelPreFab;
     [SerializeField] public GameObject Canvas;
@@ -12,6 +11,8 @@ public class SmartPhone : MonoBehaviour
     private List<GameObject> SmartPhoneButtons;
     private GameObject smartPhonePanel;
     private RectTransform smartPhoneTransform;
+
+    #region Start
 
     void Start()
     {
@@ -24,15 +25,19 @@ public class SmartPhone : MonoBehaviour
         GameObject callHospiceButton = Instantiate(ButtonPreFab);
         callHospiceButton.transform.GetChild(0).GetComponent<Text>().text = "Call Hospice";
         callHospiceButton.transform.SetParent(smartPhonePanel.transform);
+        callHospiceButton.GetComponent<Button>().onClick.AddListener(CallHospice);
         SmartPhoneButtons.Add(callHospiceButton);
 
-        GameObject callFuneralHome = Instantiate(ButtonPreFab);
-        callFuneralHome.transform.GetChild(0).GetComponent<Text>().text = "Call Funeral Home";
-        callFuneralHome.transform.SetParent(smartPhonePanel.transform);
-        SmartPhoneButtons.Add(callFuneralHome);
+        GameObject callFuneralHomeButton = Instantiate(ButtonPreFab);
+        callFuneralHomeButton.transform.GetChild(0).GetComponent<Text>().text = "Call Funeral Home";
+        callFuneralHomeButton.transform.SetParent(smartPhonePanel.transform);
+        callFuneralHomeButton.GetComponent<Button>().onClick.AddListener(CallFuneralHome);
+        SmartPhoneButtons.Add(callFuneralHomeButton);
 
         smartPhoneTransform = smartPhonePanel.GetComponent<RectTransform>();
     }
+
+    #endregion
 
     void Update()
     {
@@ -42,33 +47,31 @@ public class SmartPhone : MonoBehaviour
             var screenPoint = Camera.main.WorldToScreenPoint(this.transform.position);
             smartPhoneTransform.position = screenPoint + new Vector3(185f, 50f, 0f);
         }
-
-        // If key pressed, play animation and set SmartPhone button panel active/inactive.
-        if (Input.GetKeyDown(SmartPhoneKey)) 
-        {
-            RaiseSmartPhone();
-
-            smartPhonePanel.SetActive(!smartPhonePanel.activeSelf);
-
-            foreach (GameObject button in SmartPhoneButtons)
-            {
-                button.SetActive(!button.activeSelf);
-            }
-
-            SmartPhoneButtons[0].GetComponent<Button>().Select();
-        }
     }
 
-    // Calls raise/lower SmartPhone animation. 
-    public void RaiseSmartPhone() 
+    public void ActivateSmartPhoneButtons()
     {
-        Animator animator = this.GetComponent<Animator>();
+        smartPhonePanel.SetActive(!smartPhonePanel.activeSelf);
 
-        if (animator != null)
+        foreach (GameObject button in SmartPhoneButtons)
         {
-            bool shouldRaise = animator.GetBool("Raise");
-
-            animator.SetBool("Raise", !shouldRaise);
+            button.SetActive(!button.activeSelf);
         }
+
+        SmartPhoneButtons[0].GetComponent<Button>().Select();
     }
+
+    #region On Button Click
+
+    public void CallHospice()
+    {
+        Debug.Log("Called Hospice!!!");
+    }
+
+    public void CallFuneralHome()
+    {
+        Debug.Log("Called Funeral Home!!!");
+    }
+
+    #endregion
 }
