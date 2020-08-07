@@ -8,9 +8,11 @@ public class Handsink : MonoBehaviour, IInteractable
 
     [SerializeField] public string ObjectName;
     [SerializeField] public GameObject InteractMenu;
+    [SerializeField] public GameObject ButtonPreFab;
+    [SerializeField] public GameObject HandSinkWater;
+    [SerializeField] public GameObject HandSinkWaterStream;
 
-    public List<GameObject> InteractMenuOptionButtons;
-    public GameObject ButtonPreFab;
+    private List<GameObject> InteractMenuOptionButtons;
 
     #endregion
 
@@ -18,6 +20,8 @@ public class Handsink : MonoBehaviour, IInteractable
 
     void Start()
     {
+        InteractMenuOptionButtons = new List<GameObject>();
+
         // Instantiate Wash Hands button for Handsink. 
         GameObject washHandsButton = Instantiate(ButtonPreFab);
         washHandsButton.transform.GetChild(0).GetComponent<Text>().text = "Wash Hands";
@@ -82,12 +86,15 @@ public class Handsink : MonoBehaviour, IInteractable
 
     #region On Button Click
 
-    void WashHands()
+    public void WashHands()
     {
         Debug.Log("Hands washed!!!");
+
+        PourWater();
+        FillSink();
     }
 
-    void OnExitButtonClick()
+    public void OnExitButtonClick()
     {
         foreach (GameObject button in InteractMenuOptionButtons)
         {
@@ -95,6 +102,34 @@ public class Handsink : MonoBehaviour, IInteractable
         }
 
         InteractMenu.SetActive(false);
+    }
+
+    #endregion
+
+    #region Animations
+
+    public void FillSink()
+    {
+        Animator animator = HandSinkWater.GetComponent<Animator>();
+
+        if (animator != null)
+        {
+            bool shouldFill = animator.GetBool("Fill");
+
+            animator.SetBool("Fill", !shouldFill);
+        }
+    }
+
+    public void PourWater()
+    {
+        Animator animator = HandSinkWaterStream.GetComponent<Animator>();
+
+        if (animator != null)
+        {
+            bool shouldStream = animator.GetBool("Streaming");
+
+            animator.SetBool("Streaming", !shouldStream);
+        }
     }
 
     #endregion
