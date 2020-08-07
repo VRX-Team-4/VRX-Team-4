@@ -12,12 +12,19 @@ public class Handsink : MonoBehaviour, IInteractable
     public List<GameObject> InteractMenuOptionButtons;
     public GameObject ButtonPreFab;
 
+    public bool HandsWashed;
+    public bool ClaimedPoint;
+
     #endregion
 
     #region Start
 
     void Start()
     {
+        // Instantiate Goal Variable
+        HandsWashed = false;
+        ClaimedPoint = false;
+
         // Instantiate Wash Hands button for Handsink. 
         GameObject washHandsButton = Instantiate(ButtonPreFab);
         washHandsButton.transform.GetChild(0).GetComponent<Text>().text = "Wash Hands";
@@ -84,6 +91,7 @@ public class Handsink : MonoBehaviour, IInteractable
 
     void WashHands()
     {
+        HandsWashed = true;
         Debug.Log("Hands washed!!!");
     }
 
@@ -95,6 +103,23 @@ public class Handsink : MonoBehaviour, IInteractable
         }
 
         InteractMenu.SetActive(false);
+    }
+
+    #endregion
+
+    #region Scoring
+
+    public bool AwardPoint()
+    {
+        if ( HandsWashed && !ClaimedPoint )
+        {
+            ClaimedPoint = true;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     #endregion
