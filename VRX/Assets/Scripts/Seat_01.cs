@@ -8,15 +8,9 @@ public class Seat_01 : MonoBehaviour, IInteractable
 
     [SerializeField] public string ObjectName;
     [SerializeField] public GameObject InteractMenu;
+    [SerializeField] public GameObject ButtonPreFab;
 
-    public List<GameObject> InteractMenuOptionButtons;
-    public GameObject ButtonPreFab;
-
-    public GameObject SeatRotationPoint;
-    public bool IsLifting = false;
-    public float AngleToRotate = 90f;
-    public float TimeToRotate = 1024f;
-    public float StepAngle;
+    private List<GameObject> InteractMenuOptionButtons;
 
     #endregion
 
@@ -24,7 +18,7 @@ public class Seat_01 : MonoBehaviour, IInteractable
 
     void Start()
     {
-        StepAngle = AngleToRotate / ( TimeToRotate / 1000f );
+        InteractMenuOptionButtons = new List<GameObject>();
 
         // Instantiate Flush button for Seat_01. 
         GameObject toiletFlushButton = Instantiate(ButtonPreFab);
@@ -55,16 +49,6 @@ public class Seat_01 : MonoBehaviour, IInteractable
 
     void Update() 
     {
-        //if (transform.rotation.eulerAngles.x <= -90f)
-        //{
-        //    Debug.Log("check");
-        //    IsLifting = false;
-        //}
-
-        //if (IsLifting == true) 
-        //{
-        //    transform.RotateAround(SeatRotationPoint.transform.position, new Vector3(1f, 0f, 0f), -60 * Time.deltaTime);
-        //}
     }
 
     #region On Hover
@@ -112,7 +96,6 @@ public class Seat_01 : MonoBehaviour, IInteractable
 
     void LiftSeat_01() 
     {
-        //IsLifting = true;
         Animator animator = this.GetComponent<Animator>();
 
         if (animator != null)
