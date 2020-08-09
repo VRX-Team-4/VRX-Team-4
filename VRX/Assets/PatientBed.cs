@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PatientBedMattress : MonoBehaviour, IInteractable
+public class PatientBed : MonoBehaviour, IInteractable
 {
     #region Properties
 
@@ -10,6 +10,7 @@ public class PatientBedMattress : MonoBehaviour, IInteractable
     [SerializeField] public GameObject InteractMenu;
     [SerializeField] public GameObject ButtonPreFab;
 
+    [SerializeField] public GameObject Mattress;
     [SerializeField] public GameObject Patient;
 
     private List<GameObject> InteractMenuOptionButtons;
@@ -25,13 +26,13 @@ public class PatientBedMattress : MonoBehaviour, IInteractable
         // Instantiate Raise/Lower Head button for PatientBed. 
         GameObject raiseHeadButton = Instantiate(ButtonPreFab);
         raiseHeadButton.transform.GetChild(0).GetComponent<Text>().text = "Raise/Lower Head";
-        raiseHeadButton.GetComponent<Button>().onClick.AddListener(LowerPatientBedHeadAndPatientHead);
+        raiseHeadButton.GetComponent<Button>().onClick.AddListener(OnLowerHeadClick);
         InteractMenuOptionButtons.Add(raiseHeadButton);
 
         // Instantiate Raise/Lower Bed button for PatientBed. 
         GameObject raiseBedButton = Instantiate(ButtonPreFab);
         raiseBedButton.transform.GetChild(0).GetComponent<Text>().text = "Raise/Lower Bed";
-        raiseBedButton.GetComponent<Button>().onClick.AddListener(LowerPatientBedHeightAndPatientHeight);
+        raiseBedButton.GetComponent<Button>().onClick.AddListener(OnLowerHeightClick);
         InteractMenuOptionButtons.Add(raiseBedButton);
 
         // Instantiate Exit button for PatientBed. 
@@ -49,6 +50,7 @@ public class PatientBedMattress : MonoBehaviour, IInteractable
 
     #endregion
 
+    // Update is called once per frame
     void Update()
     {
         
@@ -92,13 +94,12 @@ public class PatientBedMattress : MonoBehaviour, IInteractable
 
     #region On Button Click
 
-    public void LowerPatientBedHeadAndPatientHead() 
+    public void OnLowerHeadClick()
     {
         LowerPatientBedHead();
-        LowerPatientHead();
     }
 
-    public void LowerPatientBedHeightAndPatientHeight()
+    public void OnLowerHeightClick()
     {
         LowerPatientBedHeight();
     }
@@ -117,23 +118,9 @@ public class PatientBedMattress : MonoBehaviour, IInteractable
 
     #region Animations
 
-    // Animation for lowering head of Patient Bed. 
     public void LowerPatientBedHead()
     {
-        Animator animator = this.GetComponent<Animator>();
-
-        if (animator != null)
-        {
-            bool shouldLower = animator.GetBool("Lower");
-
-            animator.SetBool("Lower", !shouldLower);
-        }
-    }
-
-    // Animation for lowering head of Patient. 
-    public void LowerPatientHead()
-    {
-        Animator animator = Patient.GetComponent<Animator>();
+        Animator animator = Mattress.GetComponent<Animator>();
 
         if (animator != null)
         {
