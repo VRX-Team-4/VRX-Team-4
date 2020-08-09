@@ -26,11 +26,11 @@ public class Patient : MonoBehaviour, IInteractable
         rotateLeftButton.GetComponent<Button>().onClick.AddListener(OnRotateLeftClick);
         InteractMenuOptionButtons.Add(rotateLeftButton);
 
-        // Instantiate Raise/Lower Bed button for PatientBed. 
-        //GameObject raiseBedButton = Instantiate(ButtonPreFab);
-        //raiseBedButton.transform.GetChild(0).GetComponent<Text>().text = "Raise/Lower Bed";
-        //raiseBedButton.GetComponent<Button>().onClick.AddListener(OnLowerHeightClick);
-        //InteractMenuOptionButtons.Add(raiseBedButton);
+        // Instantiate RotateRight button for Patient.
+        GameObject rotateRightButton = Instantiate(ButtonPreFab);
+        rotateRightButton.transform.GetChild(0).GetComponent<Text>().text = "Rotate Right";
+        rotateRightButton.GetComponent<Button>().onClick.AddListener(OnRotateRightClick);
+        InteractMenuOptionButtons.Add(rotateRightButton);
 
         // Instantiate Exit button for PatientBed. 
         GameObject exitButton = Instantiate(ButtonPreFab);
@@ -95,6 +95,11 @@ public class Patient : MonoBehaviour, IInteractable
         RotatePatientLeft();
     }
 
+    public void OnRotateRightClick()
+    {
+        RotatePatientRight();
+    }
+
     public void OnExitButtonClick()
     {
         foreach (GameObject button in InteractMenuOptionButtons)
@@ -118,6 +123,18 @@ public class Patient : MonoBehaviour, IInteractable
             bool shouldRotate = animator.GetBool("RotateLeft");
 
             animator.SetBool("RotateLeft", !shouldRotate);
+        }
+    }
+
+    public void RotatePatientRight()
+    {
+        Animator animator = this.GetComponent<Animator>();
+
+        if (animator != null)
+        {
+            bool shouldRotate = animator.GetBool("RotateRight");
+
+            animator.SetBool("RotateRight", !shouldRotate);
         }
     }
 
