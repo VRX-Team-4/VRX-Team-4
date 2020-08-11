@@ -11,14 +11,17 @@ public class Score : MonoBehaviour
 
     
 
-    // Update is called once per frame
-    void Update()
+    void Start()
     {
-        
-        if (FindObjectOfType<Handsink>().AwardPoint())
-        {
-            score++;
-        }
+        score = 0;
+        goal = 10;//change this on actual given goal
         scoreText.text = "Points: " + score.ToString() + "/" + goal.ToString();
     }
+
+    public void UpdateScore()
+    {
+        score++;
+        scoreText.text = "Points: " + score.ToString() + "/" + goal.ToString();
+    }
+
 }

@@ -94,7 +94,7 @@ public class Handsink : MonoBehaviour, IInteractable
 
     public void WashHands()
     {
-        HandsWashed = true;
+        FindObjectOfType<Score>().UpdateScore();
         Debug.Log("Hands washed!!!");
 
         PourWater();
@@ -113,12 +113,11 @@ public class Handsink : MonoBehaviour, IInteractable
 
     #endregion
 
-<<<<<<< HEAD:VRX/Assets/Handsink.cs
     #region Scoring
 
     public bool AwardPoint()
     {
-        if ( HandsWashed && !ClaimedPoint )
+        if (HandsWashed && !ClaimedPoint)
         {
             ClaimedPoint = true;
             return true;
@@ -126,7 +125,12 @@ public class Handsink : MonoBehaviour, IInteractable
         else
         {
             return false;
-=======
+
+        } 
+    }
+    #endregion
+
+
     #region Animations
 
     public void FillSink()
@@ -150,8 +154,7 @@ public class Handsink : MonoBehaviour, IInteractable
             bool shouldStream = animator.GetBool("Streaming");
 
             animator.SetBool("Streaming", !shouldStream);
->>>>>>> develop:VRX/Assets/Scripts/Handsink.cs
-        }
+}
     }
 
     #endregion
