@@ -130,7 +130,6 @@ public class Handsink : MonoBehaviour, IInteractable
     }
     #endregion
 
-
     #region Animations
 
     public void FillSink()
