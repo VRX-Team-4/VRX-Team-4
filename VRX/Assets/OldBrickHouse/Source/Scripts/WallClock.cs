@@ -19,7 +19,7 @@ public class WallClock : MonoBehaviour {
 	/// <summary>
 	/// Second Hand Game Object (Rotation will occur on z-axis)
 	/// </summary>
-	//public GameObject secondHand;
+	public GameObject secondHand;
 
 	/// <summary>
 	/// Minute Hand Game Object (Rotation will occur on z-axis)
@@ -109,10 +109,10 @@ public class WallClock : MonoBehaviour {
 	/// 
 	/// </summary>
 	void Start() {
-		/*if (!secondHand)
-			throw new UnityException("The Second Hand GameObject cannot be null");*/
+        if (!secondHand)
+            throw new UnityException("The Second Hand GameObject cannot be null");
 
-		if (!minuteHand)
+        if (!minuteHand)
 			throw new UnityException("The Minute Hand GameObject cannot be null");
 
 		if (!hourHand)
@@ -138,13 +138,13 @@ public class WallClock : MonoBehaviour {
 			return;
 
 		updateTimeElapsed = 0.0f;
-		currentSeconds += 1;    
-		/*secondHand.transform.localEulerAngles = new Vector3 (
-			VECTOR_NOCHANGE, 
-			VECTOR_NOCHANGE, 
-			(MAX_DEGREE_ANGLE / SECONDS_PER_MINUTE) * currentSeconds);*/
+		currentSeconds += 1;
+        secondHand.transform.localEulerAngles = new Vector3(
+            VECTOR_NOCHANGE,
+            VECTOR_NOCHANGE,
+            (MAX_DEGREE_ANGLE / SECONDS_PER_MINUTE) * currentSeconds);
 
-		if (currentSeconds >= SECONDS_PER_MINUTE) {
+        if (currentSeconds >= SECONDS_PER_MINUTE) {
 			currentSeconds = 0;
 			currentMinutes += 1;
 		}
