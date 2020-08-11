@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FamilyMember : MonoBehaviour
+public class FamilyMember : MonoBehaviour, IPerson
 {
     // Start is called before the first frame update
     void Start()
@@ -15,4 +15,13 @@ public class FamilyMember : MonoBehaviour
     {
         
     }
+
+    #region OnHover
+
+    public bool IsAlive()
+    {
+        return true;
+    }
+
+    #endregion
 }

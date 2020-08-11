@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Patient : MonoBehaviour, IInteractable
+public class Patient : MonoBehaviour, IInteractable, IPerson
 {
     #region Properties
 
@@ -60,6 +60,11 @@ public class Patient : MonoBehaviour, IInteractable
         {
             ObjectName = ObjectName
         };
+    }
+
+    public bool IsAlive()
+    {
+        return false;
     }
 
     #endregion
