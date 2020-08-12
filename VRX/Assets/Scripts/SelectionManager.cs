@@ -73,15 +73,9 @@ public class SelectionManager : MonoBehaviour
             // Check if person is alive if person is not null. 
             if (person != null)
             {
-                if (stethoscope.GetComponent<Stethoscope>().IsBeingUsed && person.IsAlive())
-                {
-                    outputText.text = "You detect a heart beat!!!";
-                    Debug.Log("You detect a heart beat!!!");
-                }
-                else if (stethoscope.GetComponent<Stethoscope>().IsBeingUsed && !person.IsAlive())
-                {
-                    outputText.text = "You do not detect a heart beat!!!";
-                    Debug.Log("You do not detect a heart beat!!!");
+                if (stethoscope.GetComponent<Stethoscope>().IsBeingUsed && shouldDisplayOutputText)
+                { 
+                    outputText.text = person.IsAlive() ? "You detect a heart beat!!!" : "You do not detect a heart beat!!!";
                 }
 
                 // Do not try to set outputText with every Update. Only set once. 

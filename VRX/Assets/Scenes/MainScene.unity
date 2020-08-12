@@ -3049,6 +3049,11 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.047987886
       objectReference: {fileID: 0}
+    - target: {fileID: 467560700253107584, guid: 5c296df26581026428736e7a7c297dc2,
+        type: 3}
+      propertyPath: m_TagString
+      value: Selectable
+      objectReference: {fileID: 0}
     - target: {fileID: 467560700253107586, guid: 5c296df26581026428736e7a7c297dc2,
         type: 3}
       propertyPath: m_TagString
@@ -7778,7 +7783,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 190, y: 140}
+  m_SizeDelta: {x: 180, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1289774114
 MonoBehaviour:
@@ -9614,6 +9619,42 @@ MonoBehaviour:
   HandSinkWaterStream: {fileID: 1061072673}
   HandsWashed: 0
   ClaimedPoint: 0
+--- !u!1 &1700933457 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 467560700253107584, guid: 5c296df26581026428736e7a7c297dc2,
+    type: 3}
+  m_PrefabInstance: {fileID: 342492045}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &1700933459
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700933457}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300002, guid: 4be7eb2d173f39945b561cf3f5055ebc, type: 3}
+--- !u!114 &1700933460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700933457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d63a73ae90ed424284abd3096e0216d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectName: Patient
+  InteractMenu: {fileID: 1763048720}
+  ButtonPreFab: {fileID: 3651881725383022630, guid: 17bbfb4ae89c4834199ec7752f91c1b9,
+    type: 3}
 --- !u!1 &1744663685
 GameObject:
   m_ObjectHideFlags: 0
