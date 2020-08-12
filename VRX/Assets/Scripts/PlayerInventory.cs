@@ -5,13 +5,14 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField] public GameObject smartPhone;
     [SerializeField] public KeyCode SmartPhoneKey;
 
-    // Start is called before the first frame update
+    [SerializeField] public GameObject stethoscope;
+    [SerializeField] public KeyCode StethoscopeKey;
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(SmartPhoneKey))
@@ -20,12 +21,20 @@ public class PlayerInventory : MonoBehaviour
 
             smartPhone.GetComponent<SmartPhone>().ActivateSmartPhoneButtons();
         }
+
+        if (Input.GetKeyDown(StethoscopeKey))
+        {
+            stethoscope.GetComponent<Stethoscope>().UseStethoscope();
+
+            RaiseStethoscope();
+        }
     }
+
+    #region Animations
 
     // Calls raise/lower SmartPhone animation. 
     public void RaiseSmartPhone()
     {
-        
         Animator animator = smartPhone.GetComponent<Animator>();
 
         if (animator != null)
@@ -35,4 +44,19 @@ public class PlayerInventory : MonoBehaviour
             animator.SetBool("Raise", !shouldRaise);
         }
     }
+
+    // Calls raise/lower Stethoscope animation.
+    public void RaiseStethoscope()
+    {
+        Animator animator = stethoscope.GetComponent<Animator>();
+
+        if (animator != null)
+        {
+            bool shouldRaise = animator.GetBool("Raise");
+
+            animator.SetBool("Raise", !shouldRaise);
+        }
+    }
+
+    #endregion
 }

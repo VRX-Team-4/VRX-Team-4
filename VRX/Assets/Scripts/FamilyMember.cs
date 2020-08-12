@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FamilyMember : MonoBehaviour, IInteractable
-{
+public class FamilyMember : MonoBehaviour, IInteractable, IPerson
 
     #region Properties
 

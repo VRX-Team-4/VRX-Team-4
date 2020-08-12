@@ -9,6 +9,8 @@ public class SelectionManager : MonoBehaviour
     [SerializeField] private GameObject selectObjectNameText; 
     [SerializeField] private string selectableTag = "Selectable";
 
+    [SerializeField] private GameObject stethoscope;
+
     private Transform selectedObject;
 
     private void Update()
@@ -52,6 +54,22 @@ public class SelectionManager : MonoBehaviour
                     {
                         var interactionOutput = selectedObject.GetComponent<IInteractable>().Interact();
                     }
+                }
+            }
+
+            // Get IPerson component if present from selectedObject.
+            var person = selectedObject.GetComponent<IPerson>();
+
+            // Check if person is alive if person is not null. 
+            if (person != null)
+            {
+                if (stethoscope.GetComponent<Stethoscope>().IsBeingUsed && person.IsAlive())
+                {
+                    Debug.Log("You detect a heart beat!!!");
+                }
+                else if (stethoscope.GetComponent<Stethoscope>().IsBeingUsed && !person.IsAlive())
+                {
+                    Debug.Log("You do not detect a heart beat!!!");
                 }
             }
         }
