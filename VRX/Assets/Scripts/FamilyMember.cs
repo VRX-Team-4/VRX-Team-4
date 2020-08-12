@@ -1,10 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class FamilyMember : MonoBehaviour, IInteractable, IPerson
-
+{ 
     #region Properties
 
     [SerializeField] public string ObjectName;
@@ -47,6 +46,11 @@ public class FamilyMember : MonoBehaviour, IInteractable, IPerson
         {
             ObjectName = ObjectName
         };
+    }
+
+    public bool IsAlive()
+    {
+        return true;
     }
 
     #endregion
