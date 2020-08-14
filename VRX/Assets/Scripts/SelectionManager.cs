@@ -6,12 +6,20 @@ public class SelectionManager : MonoBehaviour
     //[SerializeField] private Material hightLightMaterial;
     //[SerializeField] private Material defaultMaterial;
     [SerializeField] private GameObject selectedObjectNamePanel;
-    [SerializeField] private GameObject selectObjectNameText; 
+    [SerializeField] private GameObject selectObjectNameText;
+    [SerializeField] private GameObject interactionOutputText;
     [SerializeField] private string selectableTag = "Selectable";
 
     [SerializeField] private GameObject stethoscope;
 
     private Transform selectedObject;
+    private Text outputText;
+    private bool shouldDisplayOutputText;
+
+    private void Start()
+    {
+        outputText = interactionOutputText.GetComponent<Text>();
+    }
 
     private void Update()
     {
@@ -25,6 +33,8 @@ public class SelectionManager : MonoBehaviour
             selectObjectNameText.GetComponent<Text>().text = null;
             selectedObjectNamePanel.SetActive(false);
 
+            shouldDisplayOutputText = true;
+            outputText.text = null;
             selectedObject = null;
         }
 
@@ -63,14 +73,13 @@ public class SelectionManager : MonoBehaviour
             // Check if person is alive if person is not null. 
             if (person != null)
             {
-                if (stethoscope.GetComponent<Stethoscope>().IsBeingUsed && person.IsAlive())
-                {
-                    Debug.Log("You detect a heart beat!!!");
+                if (stethoscope.GetComponent<Stethoscope>().IsBeingUsed && shouldDisplayOutputText)
+                { 
+                    outputText.text = person.IsAlive() ? "You detect a heart beat!!!" : "You do not detect a heart beat!!!";
                 }
-                else if (stethoscope.GetComponent<Stethoscope>().IsBeingUsed && !person.IsAlive())
-                {
-                    Debug.Log("You do not detect a heart beat!!!");
-                }
+
+                // Do not try to set outputText with every Update. Only set once. 
+                shouldDisplayOutputText = false;
             }
         }
     }

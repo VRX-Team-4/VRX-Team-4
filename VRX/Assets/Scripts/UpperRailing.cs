@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class UpperRailing : MonoBehaviour, IInteractable
 {
@@ -36,18 +34,6 @@ public class UpperRailing : MonoBehaviour, IInteractable
 
     public InteractionOutput Interact()
     {
-        //// Show SelectedObjectInteractMenu on Interact. 
-        //InteractMenu.SetActive(true);
-
-        //// Show each button on Interact. 
-        //foreach (GameObject button in InteractMenuOptionButtons)
-        //{
-        //    button.SetActive(true);
-        //}
-
-        //// Select first button. 
-        //InteractMenuOptionButtons[0].GetComponent<Button>().Select();
-
         LowerRailing();
         LowerHinge_01();
         LowerHinge_02();
