@@ -11,6 +11,7 @@ public class Patient : MonoBehaviour, IInteractable, IPerson
     [SerializeField] public GameObject ButtonPreFab;
 
     private List<GameObject> InteractMenuOptionButtons;
+    public List<string> Questions;
 
     #endregion
 
@@ -19,6 +20,22 @@ public class Patient : MonoBehaviour, IInteractable, IPerson
     void Start()
     {
         InteractMenuOptionButtons = new List<GameObject>();
+        Questions = new List<string>();
+
+        // Instantiate both enquiry conversation buttons.
+        GameObject enquiryConversation1Button = Instantiate(ButtonPreFab);
+        enquiryConversation1Button.transform.GetChild(0).GetComponent<Text>().text = "Hi! How are you today?";
+        enquiryConversation1Button.GetComponent<Button>().onClick.AddListener(onEnquiryConversation1);
+        enquiryConversation1Button.name = "enquiryConversation1Button";
+        Questions.Add(enquiryConversation1Button.name);
+        InteractMenuOptionButtons.Add(enquiryConversation1Button);
+
+        GameObject enquiryConversation2Button = Instantiate(ButtonPreFab);
+        enquiryConversation2Button.transform.GetChild(0).GetComponent<Text>().text = "Are you in pain today?";
+        enquiryConversation2Button.GetComponent<Button>().onClick.AddListener(onEnquiryConversation2);
+        enquiryConversation2Button.name = "enquiryConversation2Button";
+        Questions.Add(enquiryConversation2Button.name);
+        InteractMenuOptionButtons.Add(enquiryConversation2Button);
 
         // Instantiate RotateLeft button for Patient. 
         GameObject rotateLeftButton = Instantiate(ButtonPreFab);
@@ -49,7 +66,7 @@ public class Patient : MonoBehaviour, IInteractable, IPerson
 
     void Update()
     {
-        
+
     }
 
     #region On Hover
@@ -70,6 +87,7 @@ public class Patient : MonoBehaviour, IInteractable, IPerson
     #endregion
 
     #region On Interact
+
 
     public InteractionOutput Interact()
     {
@@ -95,6 +113,20 @@ public class Patient : MonoBehaviour, IInteractable, IPerson
 
     #region On Button Click
 
+    public void onEnquiryConversation1()
+    {
+
+        FindObjectOfType<DialogText>().PatientDialog(".");
+
+
+    }
+    public void onEnquiryConversation2()
+    {
+
+        FindObjectOfType<DialogText>().PatientDialog("......................");
+
+
+    }
     public void OnRotateLeftClick()
     {
         RotatePatientLeft();
