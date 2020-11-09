@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class FamilyMember : MonoBehaviour, IInteractable, IPerson
-{ 
+{
     #region Properties
 
     [SerializeField] public string ObjectName;
@@ -24,6 +24,29 @@ public class FamilyMember : MonoBehaviour, IInteractable, IPerson
         InteractMenuOptionButtons = new List<GameObject>();
         Questions = new List<string>();
 
+        // Instantiate Patient ID check.
+        GameObject patientIdCheckButton = Instantiate(ButtonPreFab);
+        patientIdCheckButton.transform.GetChild(0).GetComponent<Text>().text = "Can you please tell me the ID of the patient?";
+        patientIdCheckButton.GetComponent<Button>().onClick.AddListener(onPatientIdCheck);
+        patientIdCheckButton.name = "patientIdCheckButton";
+        Questions.Add(patientIdCheckButton.name);
+        InteractMenuOptionButtons.Add(patientIdCheckButton);
+
+        // Instantiate both casual conversation buttons.
+        GameObject casualConversation1Button = Instantiate(ButtonPreFab);
+        casualConversation1Button.transform.GetChild(0).GetComponent<Text>().text = "Hi! How are you today?";
+        casualConversation1Button.GetComponent<Button>().onClick.AddListener(onCasualConversation1);
+        casualConversation1Button.name = "casualConversation1Button";
+        Questions.Add(casualConversation1Button.name);
+        InteractMenuOptionButtons.Add(casualConversation1Button);
+
+        GameObject casualConversation2Button = Instantiate(ButtonPreFab);
+        casualConversation2Button.transform.GetChild(0).GetComponent<Text>().text = "How is your husband feeling today?";
+        casualConversation2Button.GetComponent<Button>().onClick.AddListener(onCasualConversation2);
+        casualConversation2Button.name = "casualConversation2Button";
+        Questions.Add(casualConversation2Button.name);
+        InteractMenuOptionButtons.Add(casualConversation2Button);
+
         // Instantiate where is patient dialog button. 
         GameObject whereIsPatientButton = Instantiate(ButtonPreFab);
         whereIsPatientButton.transform.GetChild(0).GetComponent<Text>().text = "Where Is the Patient?";
@@ -35,7 +58,7 @@ public class FamilyMember : MonoBehaviour, IInteractable, IPerson
         // Instantiate where is sink dialog button. 
         GameObject whereIsHandsinkButton = Instantiate(ButtonPreFab);
         whereIsHandsinkButton.transform.GetChild(0).GetComponent<Text>().text = "Where Is the Sink?";
-        whereIsHandsinkButton.GetComponent<Button>().onClick.AddListener(OnWhereIsPatientClick);
+        whereIsHandsinkButton.GetComponent<Button>().onClick.AddListener(OnWhereIsSinkClick);
         whereIsHandsinkButton.name = "whereIsHandsinkButton";
         Questions.Add(whereIsHandsinkButton.name);
         InteractMenuOptionButtons.Add(whereIsHandsinkButton);
@@ -69,7 +92,7 @@ public class FamilyMember : MonoBehaviour, IInteractable, IPerson
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     #region On Hover
@@ -114,10 +137,49 @@ public class FamilyMember : MonoBehaviour, IInteractable, IPerson
     #endregion
 
     #region On Button Click
-    
+    public void onPatientIdCheck()
+    {
+
+        FindObjectOfType<DialogText>().FamilyMemberDialog("1001158345");
+
+        foreach (GameObject button in InteractMenuOptionButtons)
+        {
+            if (Questions.Contains(button.name))
+            {
+                button.SetActive(false);
+            }
+        }
+    }
+    public void onCasualConversation1()
+    {
+
+        FindObjectOfType<DialogText>().FamilyMemberDialog("I am doing fine, I hope you are doing well.");
+
+        foreach (GameObject button in InteractMenuOptionButtons)
+        {
+            if (Questions.Contains(button.name))
+            {
+                button.SetActive(false);
+            }
+        }
+    }
+    public void onCasualConversation2()
+    {
+
+        FindObjectOfType<DialogText>().FamilyMemberDialog("He is feeling a little better today. I am glad you are here to check on him.");
+
+        foreach (GameObject button in InteractMenuOptionButtons)
+        {
+            if (Questions.Contains(button.name))
+            {
+                button.SetActive(false);
+            }
+        }
+    }
     public void OnWhereIsPatientClick()
     {
-        if(TalkedToFamilyMemberScore  == false){
+        if (TalkedToFamilyMemberScore == false)
+        {
             FindObjectOfType<Score>().UpdateScore();
             TalkedToFamilyMemberScore = true;
         }

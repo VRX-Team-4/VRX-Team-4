@@ -8,6 +8,8 @@ public class SelectionManager : MonoBehaviour
     [SerializeField] private GameObject selectedObjectNamePanel;
     [SerializeField] private GameObject selectObjectNameText;
     [SerializeField] private GameObject interactionOutputText;
+    [SerializeField] private GameObject dialogOutputText;
+
     [SerializeField] private string selectableTag = "Selectable";
 
     [SerializeField] private GameObject stethoscope;
@@ -70,14 +72,17 @@ public class SelectionManager : MonoBehaviour
             // Get IPerson component if present from selectedObject.
             var person = selectedObject.GetComponent<IPerson>();
 
+            outputText.text = FindObjectOfType<DialogText>().OutputText.text;
+
             // Check if person is alive if person is not null. 
             if (person != null)
             {
+                outputText.text = FindObjectOfType<DialogText>().OutputText.text;
+
                 if (stethoscope.GetComponent<Stethoscope>().IsBeingUsed && shouldDisplayOutputText)
-                { 
+                {
                     outputText.text = person.IsAlive() ? "You detect a heart beat!!!" : "You do not detect a heart beat!!!";
                 }
-
                 // Do not try to set outputText with every Update. Only set once. 
                 shouldDisplayOutputText = false;
             }
