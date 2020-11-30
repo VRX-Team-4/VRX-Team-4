@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\cmaxe\AppData\Local\JetBrains\Rider2020.2\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\cmaxe\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_VRX.-1285851654.00" t="ExcludeRecursive" />
+    <e p="C:\Users\cmaxe\AppData\Roaming\JetBrains\Rider2020.2\scratches" t="IncludeRecursive" />
+    <e p="C:\Users\cmaxe\Desktop\Senior Design\CollectiveVR\Project\VRX" t="IncludeRecursive">
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="OldBrickHouse" t="Include">
+          <e p="Readme.txt" t="Include" />
+          <e p="Source" t="Include">
+            <e p="Scripts" t="Include">
+              <e p="Door.cs" t="Include" />
+              <e p="Gasheater.cs" t="Include" />
+              <e p="OldHouse_Lights.cs" t="Include" />
+              <e p="OldHouseAnimations.cs" t="Include" />
+              <e p="Raycaster_Interactions.cs" t="Include" />
+              <e p="WallClock.cs" t="Include" />
+            </e>
+            <e p="Shaders" t="Include">
+              <e p="GM_CandleFlame.shader" t="Include" />
+              <e p="GM_DualSided.shader" t="Include" />
+              <e p="GM_Glass.shader" t="Include" />
+              <e p="GM_ParallaxOcclusion.shader" t="Include" />
+              <e p="GM_StainedGlass.shader" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="PreFabs" t="Include">
+          <e p="Ornamental Flower Set" t="Include">
+            <e p="Shaders" t="Include">
+              <e p="Transparent-BumpSpecNoCull.shader" t="Include" />
+            </e>
+          </e>
+          <e p="Smartphone" t="Include">
+            <e p="StandardColorMask.shader" t="Include" />
+          </e>
+        </e>
+        <e p="Scripts" t="Include">
+          <e p="DialogText.cs" t="Include" />
+          <e p="FamilyMember.cs" t="Include" />
+          <e p="GameMenuPanel.cs" t="Include" />
+          <e p="Handsink.cs" t="Include" />
+          <e p="HoverOutput.cs" t="Include" />
+          <e p="IInteractable.cs" t="Include" />
+          <e p="InteractionOutput.cs" t="Include" />
+          <e p="InventoryButton.cs" t="Include" />
+          <e p="IPerson.cs" t="Include" />
+          <e p="MouseLook.cs" t="Include" />
+          <e p="ObjectOne.cs" t="Include" />
+          <e p="ObjectTwo.cs" t="Include" />
+          <e p="Patient.cs" t="Include" />
+          <e p="PatientBed.cs" t="Include" />
+          <e p="PatientBedMattress.cs" t="Include" />
+          <e p="PatientHead.cs" t="Include" />
+          <e p="PatientLowerBody.cs" t="Include" />
+          <e p="PlayerInventory.cs" t="Include" />
+          <e p="PlayerMovement.cs" t="Include" />
+          <e p="Score.cs" t="Include" />
+          <e p="Seat_01.cs" t="Include" />
+          <e p="SelectionManager.cs" t="Include" />
+          <e p="SmartPhone.cs" t="Include" />
+          <e p="Stethoscope.cs" t="Include" />
+          <e p="UpperRailing.cs" t="Include" />
+        </e>
+      </e>
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="Packages" t="ExcludeRecursive" />
+      <e p="Temp\bin" t="ExcludeRecursive" />
+      <e p="VRX.sln" t="IncludeFlat" />
+    </e>
+  </component>
+</project>

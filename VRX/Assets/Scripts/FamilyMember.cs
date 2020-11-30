@@ -102,6 +102,11 @@ public class FamilyMember : MonoBehaviour, IInteractable, IPerson
             button.SetActive(true);
         }
 
+        // Stop the player from moving during dialogue
+        GameObject thePlayer = GameObject.Find("Player");
+        PlayerMovement pm = thePlayer.GetComponent<PlayerMovement>();
+        pm.canMove = false;
+
         // Select first button. 
         InteractMenuOptionButtons[0].GetComponent<Button>().Select();
 
@@ -109,6 +114,7 @@ public class FamilyMember : MonoBehaviour, IInteractable, IPerson
         {
             ObjectName = ObjectName,
         };
+
     }
 
     #endregion
@@ -123,14 +129,6 @@ public class FamilyMember : MonoBehaviour, IInteractable, IPerson
         }
 
         FindObjectOfType<DialogText>().FamilyMemberDialog("The patient is up the stairs, in the room the oposite side of the stair case");
-
-        foreach (GameObject button in InteractMenuOptionButtons)
-        {
-            if (Questions.Contains(button.name))
-            {
-                button.SetActive(false);
-            }
-        }
     }
 
     public void OnWhereIsSinkClick()
@@ -142,14 +140,6 @@ public class FamilyMember : MonoBehaviour, IInteractable, IPerson
         }
 
         FindObjectOfType<DialogText>().FamilyMemberDialog("The sink is up the stairs in the restroom. The room in front of the stair case");
-
-        foreach (GameObject button in InteractMenuOptionButtons)
-        {
-            if (Questions.Contains(button.name))
-            {
-                button.SetActive(false);
-            }
-        }
     }
 
     public void OnExitButtonClick()
@@ -160,6 +150,11 @@ public class FamilyMember : MonoBehaviour, IInteractable, IPerson
         }
 
         InteractMenu.SetActive(false);
+
+        // allow the player to move again
+        GameObject thePlayer = GameObject.Find("Player");
+        PlayerMovement pm = thePlayer.GetComponent<PlayerMovement>();
+        pm.canMove = true;
     }
 
     public void OnOkayClick()

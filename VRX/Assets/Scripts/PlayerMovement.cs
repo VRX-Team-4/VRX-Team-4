@@ -8,9 +8,11 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundMask;
     public float speed = 12f;
     public float gravity = -9.81f;
+    public bool canMove = true;
 
     Vector3 velocity;
-    bool isGrounded; 
+    bool isGrounded;
+
 
     // Update is called once per frame
     void Update()
@@ -25,10 +27,12 @@ public class PlayerMovement : MonoBehaviour
         float z = Input.GetAxis("Vertical");
 
         Vector3 move = transform.right * x + transform.forward * z;
-
-        controller.Move(move * speed * Time.deltaTime);
-
         velocity.y += gravity * Time.deltaTime;
-        controller.Move(velocity * Time.deltaTime);
+
+        if (canMove)
+        {
+            controller.Move(move * speed * Time.deltaTime);
+            controller.Move(velocity * Time.deltaTime);
+        }
     }
 }
