@@ -99,6 +99,14 @@ public class Handsink : MonoBehaviour, IInteractable
 
         PourWater();
         FillSink();
+
+        foreach (GameObject button in InteractMenuOptionButtons)
+        {
+            button.SetActive(false);
+        }
+
+        InteractMenu.SetActive(false);
+
     }
 
     public void OnExitButtonClick()
