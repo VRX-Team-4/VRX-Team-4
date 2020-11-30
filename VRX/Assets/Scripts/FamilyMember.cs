@@ -26,7 +26,7 @@ public class FamilyMember : MonoBehaviour, IInteractable, IPerson
 
         // Instantiate Patient ID check.
         GameObject patientIdCheckButton = Instantiate(ButtonPreFab);
-        patientIdCheckButton.transform.GetChild(0).GetComponent<Text>().text = "Can you please tell me the ID of the patient?";
+        patientIdCheckButton.transform.GetChild(0).GetComponent<Text>().text = "Can you please tell me the patient's name and birthday?";
         patientIdCheckButton.GetComponent<Button>().onClick.AddListener(onPatientIdCheck);
         patientIdCheckButton.name = "patientIdCheckButton";
         Questions.Add(patientIdCheckButton.name);
@@ -62,7 +62,23 @@ public class FamilyMember : MonoBehaviour, IInteractable, IPerson
         whereIsHandsinkButton.name = "whereIsHandsinkButton";
         Questions.Add(whereIsHandsinkButton.name);
         InteractMenuOptionButtons.Add(whereIsHandsinkButton);
+        
+        // Instantiate Reporting the checkup dialog button.
+        GameObject reportOnPatientButton = Instantiate(ButtonPreFab);
+        reportOnPatientButton.transform.GetChild(0).GetComponent<Text>().text = "This is how he was doing today";
+        reportOnPatientButton.GetComponent<Button>().onClick.AddListener(OnReportOnPatientClick);
+        reportOnPatientButton.name = "reportOnPatientButton";
+        Questions.Add(reportOnPatientButton.name);
+        InteractMenuOptionButtons.Add(reportOnPatientButton);
 
+        // Instantiate Teaching the wife dialog button. 
+        GameObject teachingWifeButton = Instantiate(ButtonPreFab);
+        teachingWifeButton.transform.GetChild(0).GetComponent<Text>().text = "Teach wife how to take care of patient";
+        teachingWifeButton.GetComponent<Button>().onClick.AddListener(OnTeachingWifeClick);
+        teachingWifeButton.name = "reportOnPatientButton";
+        Questions.Add(teachingWifeButton.name);
+        InteractMenuOptionButtons.Add(teachingWifeButton);
+        
         // Instantiate Exit button. 
         GameObject exitButton = Instantiate(ButtonPreFab);
         exitButton.transform.GetChild(0).GetComponent<Text>().text = "Exit";
@@ -140,13 +156,13 @@ public class FamilyMember : MonoBehaviour, IInteractable, IPerson
     public void onPatientIdCheck()
     {
 
-        FindObjectOfType<DialogText>().FamilyMemberDialog("1001158345");
+        FindObjectOfType<DialogText>().FamilyMemberDialog("My husbands name is Jim and he was born November 12, 1950");
 
         foreach (GameObject button in InteractMenuOptionButtons)
         {
             if (Questions.Contains(button.name))
             {
-                button.SetActive(false);
+                //button.SetActive(false); // all of these make the menu go away on each button click for some reason and not just the button
             }
         }
     }
@@ -159,7 +175,7 @@ public class FamilyMember : MonoBehaviour, IInteractable, IPerson
         {
             if (Questions.Contains(button.name))
             {
-                button.SetActive(false);
+               // button.SetActive(false);
             }
         }
     }
@@ -172,7 +188,7 @@ public class FamilyMember : MonoBehaviour, IInteractable, IPerson
         {
             if (Questions.Contains(button.name))
             {
-                button.SetActive(false);
+               // button.SetActive(false);
             }
         }
     }
@@ -190,7 +206,7 @@ public class FamilyMember : MonoBehaviour, IInteractable, IPerson
         {
             if (Questions.Contains(button.name))
             {
-                button.SetActive(false);
+                //button.SetActive(false);
             }
         }
     }
@@ -209,11 +225,49 @@ public class FamilyMember : MonoBehaviour, IInteractable, IPerson
         {
             if (Questions.Contains(button.name))
             {
-                button.SetActive(false);
+               // button.SetActive(false);
+            }
+        }
+    }
+    
+    public void OnReportOnPatientClick()
+    {
+        if (TalkedToFamilyMemberScore == false)
+        {
+            FindObjectOfType<Score>().UpdateScore();
+            TalkedToFamilyMemberScore = true;
+        }
+
+        FindObjectOfType<DialogText>().FamilyMemberDialog("Thank you I am glad you came to check on him.");
+
+        foreach (GameObject button in InteractMenuOptionButtons)
+        {
+            if (Questions.Contains(button.name))
+            {
+               // button.SetActive(false);
             }
         }
     }
 
+    public void OnTeachingWifeClick()
+    {
+        if (TalkedToFamilyMemberScore == false)
+        {
+            FindObjectOfType<Score>().UpdateScore();
+            TalkedToFamilyMemberScore = true;
+        }
+
+        FindObjectOfType<DialogText>().FamilyMemberDialog("Ok i will do that. Thank you for coming and I will see you next time.");
+
+        foreach (GameObject button in InteractMenuOptionButtons)
+        {
+            if (Questions.Contains(button.name))
+            {
+                //button.SetActive(false);
+            }
+        }
+    }
+    
     public void OnExitButtonClick()
     {
         foreach (GameObject button in InteractMenuOptionButtons)
