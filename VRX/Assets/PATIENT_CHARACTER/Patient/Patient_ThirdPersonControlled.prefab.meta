@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: bde4dbd4ff44ed247bfd6bbaf0c5867f
+labels:
+- Patient
+- Character
+- Hospital
+- Char
+- Man
+- FirstAid
+- RedCross
+- Doctor
+- surgery
+- surgeon
+- clinic
+- Nurse
+- Amublance
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
