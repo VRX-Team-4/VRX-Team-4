@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class DialogText : MonoBehaviour
 {
     public Text OutputText;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -15,6 +14,11 @@ public class DialogText : MonoBehaviour
 
     public void FamilyMemberDialog(string dialog)
     {
-        OutputText.text = "Family Member: " + dialog;
+        OutputText.text = "<b><color=yellow>Family Member: </color></b>" + dialog;
+    }
+
+    public void PatientDialog(string dialog)
+    {
+        OutputText.text = "<b><color=orange>Patient: </color></b>" + dialog;
     }
 }

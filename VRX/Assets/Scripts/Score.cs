@@ -18,6 +18,12 @@ public class Score : MonoBehaviour
         scoreText.text = "Points: " + score.ToString() + "/" + goal.ToString();
     }
 
+    public void DecreaseScore()
+    {
+        score--;
+        scoreText.text = "Points: " + score.ToString() + "/" + goal.ToString();
+    }
+
     public void UpdateScore()
     {
         score++;
